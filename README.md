@@ -1,2 +1,2 @@
 # JobTrackingProgram
-Goal of the program is to help users track jobs. 
+This is the first version of the program. Main goal is just to get basic user input and dispaly data in a tabluar field. 
