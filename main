@@ -1,0 +1,71 @@
+Developer: Gerardo Gonzalez
+Date: 03/18/2018
+Time: 8:11PM
+Project: Cisco
+struct company{
+
+    char name[100];  //Company Name
+    char position[20];
+    int  date[9];    //Date the company applied for
+    char string[50]; //Had to change the variable name to string in order for the program to work kind of wierd.
+    char followup[1];
+    int number[11];
+}c1,c2,c3;
+
+int main() {
+int option;
+    //Program begins
+    printf("Welcome to your career tracking program!\n");
+
+
+    printf("--------------------------------Career Tracker--------------------------------------\n");
+    printf("Please select from one of the options below\n");
+    printf("1.Enter Company Info\n2.Search for a company\n3.Follow Up \n4.Find Company Number\n");
+    printf("Option: ");
+    scanf( "%d",&option); //Programs was crashing because I did not have & infront of option.
+    menu(option); //Call to menu
+
+    return 0;
+}
+    //This function obtains company info.
+
+void obtain(){
+    printf("Please enter the company information:\n");
+    printf("Company Name:");
+    scanf("%s",&c1.name);
+    printf("\n");
+
+    printf("Position:");
+    scanf("%s",&c1.position);
+    printf("\n");
+
+    printf("Date:");
+    scanf("%d",&c1.date);
+    printf("\n");
+
+    printf("Number:");
+    scanf("%d",&c1.number);
+    printf("\n");
+
+    printf("Web Address:");
+    scanf("%s",&c1.string);
+    printf("\n");
+
+    printf("Follow Up Needed?");
+    scanf("%s",&c1.followup);
+};
+
+
+//Remember you have to declare type of variable in function.
+void menu( int option) {
+
+    switch (option) {
+        case 1 :
+            obtain();
+            break;
+    }
+
+
+}
+
+
