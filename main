@@ -2,70 +2,155 @@ Developer: Gerardo Gonzalez
 Date: 03/18/2018
 Time: 8:11PM
 Project: Cisco
+//Version 2 First try: Tried to implment follow up feature and the abilty to start the program over after the user enters the companys.
+//Program is made to help users save time, gather data, track job searches, and notify users if they need to follow up with job application.
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+//Goal Setting- More jobs you apply for the more you get noticed.
+//Look for a company and then store content from google listings and ask user if thats what they are looking for.
+//Resumes Uploaded and to who
+//Check cover letters and edit them
+//Share resumes and cover letters with friends so that they can see it. This is more personal thats the cache.
+//Enter multiple companies or just 1?
+//Create x amount of structures based off of how many companies user wanted.
+
+
+char answer[3];
+//-------------Structures---------------------------//
 struct company{
 
-    char name[100];  //Company Name
-    char position[20];
-    int  date[9];    //Date the company applied for
+    char name[100];char username[100];  //Company Name
+    char position[20]; char userpass[20];
+    char date[9];    //Date the company applied for
     char string[50]; //Had to change the variable name to string in order for the program to work kind of wierd.
-    char followup[1];
-    int number[11];
-}c1,c2,c3;
+    char followup[2];
+    char number[11];
+}c1;
 
-int main() {
-int option;
-    //Program begins
-    printf("Welcome to your career tracking program!\n");
+//--------------Functions---------------------------//
 
-
-    printf("--------------------------------Career Tracker--------------------------------------\n");
-    printf("Please select from one of the options below\n");
-    printf("1.Enter Company Info\n2.Search for a company\n3.Follow Up \n4.Find Company Number\n");
-    printf("Option: ");
-    scanf( "%d",&option); //Programs was crashing because I did not have & infront of option.
-    menu(option); //Call to menu
-
-    return 0;
+void printc1(int i){
+    printf("Name of company: %d %s\n", i, c1.name);
+    printf("Position: %s\n", c1.position);
+    printf("Date Applied: %s \n", c1.date);
+    printf("Phone Number: %s \n", c1.number);
+    printf("Web Address: %s\n",c1.string);
+    printf("User Name: %s \n", c1.username);
+    printf("Password: %s \n",c1.userpass);
+    printf("Follow Up Needed? %s \n",c1.followup);
 }
-    //This function obtains company info.
-
-void obtain(){
-    printf("Please enter the company information:\n");
-    printf("Company Name:");
-    scanf("%s",&c1.name);
+void obtain(int i){
+    printf("Please enter the company %d information:\n",i);
+    printf("Company Name: ");
+    scanf("%s",c1.name);
     printf("\n");
 
-    printf("Position:");
-    scanf("%s",&c1.position);
+    printf("Position: ");
+    scanf("%s",c1.position);
     printf("\n");
 
-    printf("Date:");
-    scanf("%d",&c1.date);
+    printf("Date Applied:");
+    scanf("%s",c1.date);
     printf("\n");
 
-    printf("Number:");
-    scanf("%d",&c1.number);
+    printf("Phone Number: ");
+    scanf("%s",c1.number);
     printf("\n");
 
-    printf("Web Address:");
-    scanf("%s",&c1.string);
+    printf("Web Address: ");
+    scanf("%s",c1.string);
+    printf("\n");
+
+    printf("User Name: ");
+    scanf("%s",c1.username);
+    printf("\n");
+
+    printf("Password: ");
+    scanf("%s",c1.userpass);
     printf("\n");
 
     printf("Follow Up Needed?");
-    scanf("%s",&c1.followup);
+    scanf("%s",c1.followup);
+    followup();
+
 };
 
 
 //Remember you have to declare type of variable in function.
 void menu( int option) {
+    int numberjobs=0;
 
     switch (option) {
         case 1 :
-            obtain();
-            break;
-    }
 
+            printf("How many jobs would you like to track?");
+            scanf("%d",&numberjobs);
+            for( int i=1; i<=numberjobs ; i++) {
+                obtain(i);
+                printc1(i);
+            }
+           /* default:
+                printf("Go back to main menu? Select Y or N\n");
+                scanf("%s",answer); //Asks the users Y or N
+                if ( answer =="Y" || answer == "Yes") {
+                    printmenu();
+                }
+    break;*/
+
+    }
 
 }
 
+void printmenu( ) {
+    int option;
+    printf("Welcome to your career tracking program!\n");
+
+
+    printf("--------------------------------Career Tracker--------------------------------------\n");
+    printf("Please select from one of the options below\n");
+    printf("1.Insert Job Tracking Info\n2.Search for a company\n3.Follow Up \n4.Find Company Number\n");
+    printf("Option: ");
+    scanf("%d", &option); //Programs was crashing because I did not have & infront of option.
+    menu(option);
+
+}
+
+
+
+int followup() {
+    char followup[3];
+
+    char contact[10];
+    char results[100];
+    char date[20];
+    char answer[3]; //
+    if (followup == "Y" || followup == "Yes") {
+        printf("Who did you follow up with?");
+        scanf("%s", &contact);
+
+        printf("Date you followed up with?");
+        scanf("%s", &date);
+
+        printf("What was the results?");
+        scanf("%s", &results);
+
+        printf("Do you need another follow up?");
+        scanf("%s", &answer);
+        if ((answer == "Yes" || answer == "Y") || answer == "y") {
+            printf("Programd made it here");
+        } else {
+            printmenu();
+        }
+    }
+}
+int main() {
+
+    printmenu();
+    return 0;
+}
+//This function obtains company info.
+//Problem: When user enters symbols the program skips certain statents because I am not using the correct %d.
 
